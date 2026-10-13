@@ -3,10 +3,14 @@ import 'dotenv/config'
 import { Hono } from 'hono'
 import { serve } from '@hono/node-server'
 import { apiReference } from '@scalar/hono-api-reference'
+import { cors } from 'hono/cors'
 import submissionRoute from './routes/suumission.js' // Correction du nom du fichier
 import adminRoute from './routes/admin.js'
 
 const app = new Hono()
+
+// Activation de CORS pour autoriser les requêtes venant du frontend (localhost et production)
+app.use('*', cors())
 
 app.get('/', (c) => {
   return c.text('API School Admission opérationnelle ! Rendez-vous sur /docs pour tester l’API.')
@@ -160,9 +164,9 @@ app.get(
   })
 )
 
-const port = 3000
-console.log(`🚀 Serveur démarré sur http://localhost:${port}`)
-console.log(`📖 Documentation Scalar disponible sur http://localhost:${port}/docs`)
+const port = process.env.PORT ? Number(process.env.PORT) : 3000
+console.log(`🚀 Serveur démarré sur le port ${port}`)
+console.log(`📖 Documentation Scalar disponible sur /docs`)
 
 serve({ fetch: app.fetch, port })
 

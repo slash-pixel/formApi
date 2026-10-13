@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+datasource db {
+  provider = "postgresql" // Ou "sqlite", "mysql", "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Submission {
+  id              String   @id @default(uuid())
+
+  // =========================
+  // ÉLÈVE
+  // =========================
+
+  classe          String
+  nomEleve        String
+  prenoms         String
+  sexe            Sexe
+  age             Int
+  redoublant      Boolean
+  dateNaissance   DateTime
+  lieuNaissance   String
+  nationalite     String
+
+  // =========================
+  // PÈRE
+  // =========================
+
+  nomPere         String?
+  professionPere  String?
+  telephonePere   String?
+
+  // =========================
+  // MÈRE
+  // =========================
+
+  nomMere         String?
+  professionMere  String?
+  telephoneMere   String?
+
+  // =========================
+  // ADRESSE
+  // =========================
+
+  adresseQuartier String
+
+  // =========================
+  // TUTEUR
+  // =========================
+
+  nomTuteur       String
+  contactTuteur   String
+
+  // =========================
+  // URGENCE
+  // =========================
+
+  personneUrgence String
+  contactUrgence  String
+
+  // =========================
+  // OBSERVATIONS
+  // =========================
+
+  observations    String?
+
+  // =========================
+  // PHOTO 4×4
+  // =========================
+
+  photoUrl        String
+
+  // =========================
+  // DATES
+  // =========================
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+enum Sexe {
+  M
+  F
+}

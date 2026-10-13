@@ -1,0 +1,28 @@
+-- CreateTable
+CREATE TABLE "Submission" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "classe" TEXT NOT NULL,
+    "nomEleve" TEXT NOT NULL,
+    "prenoms" TEXT NOT NULL,
+    "sexe" TEXT NOT NULL,
+    "age" INTEGER NOT NULL,
+    "redoublant" BOOLEAN NOT NULL,
+    "dateNaissance" DATETIME NOT NULL,
+    "lieuNaissance" TEXT NOT NULL,
+    "nationalite" TEXT NOT NULL,
+    "nomPere" TEXT,
+    "professionPere" TEXT,
+    "telephonePere" TEXT,
+    "nomMere" TEXT,
+    "professionMere" TEXT,
+    "telephoneMere" TEXT,
+    "adresseQuartier" TEXT NOT NULL,
+    "nomTuteur" TEXT,
+    "contactTuteur" TEXT,
+    "personneUrgence" TEXT NOT NULL,
+    "contactUrgence" TEXT,
+    "observations" TEXT,
+    "photoUrl" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
+);
